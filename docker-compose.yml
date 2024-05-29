@@ -66,7 +66,7 @@ services:
       - zabbix-net
 
   grafana:
-    image: grafana/grafana
+    image: grafana:1.0
     container_name: grafana
     ports:
       - "3000:3000"
@@ -76,8 +76,6 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - ./volumes:/etc/grafana/provisioning/datasources
-      - ./grafana.conf/install_plugin.sh:/usr/local/bin/install_plugin.sh
-    entrypoint: /bin/sh -c "/usr/local/bin/install_plugin.sh && /run.sh"
     networks:
       - zabbix-net
 
