@@ -1,0 +1,5 @@
+###########S3 Sem Encriptar###
+*/120 * * * * zabbix_sender -z zabbix-server -s "zabbix-agent" -k s3.prd.without.encrypt -o $(/etc/zabbix/scripts/aws-s3-encrypt-prd.sh)
+
+###########Bucket S3 Sem TAG#####
+*/120 * * * * zabbix_sender -z zabbix-server -s "aws.prd" -k aws.prd.s3.without.tag -o $(/etc/zabbix/scripts/aws-s3-without-tag-prd.sh)
