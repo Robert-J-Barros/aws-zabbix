@@ -29,7 +29,7 @@ while true; do
             echo "Start Application"
             # Verifica se o Docker está instalado
             if ! command -v docker &> /dev/null; then
-                echo "Docker not installed. Instaling Docker..."
+                echo "Docker is not installed. Instaling Docker..."
                 sudo apt-get update
                 sudo apt-get install -y ca-certificates curl
                 sudo mkdir -p /etc/apt/keyrings
@@ -41,13 +41,13 @@ while true; do
                 sudo usermod -aG docker $USER
                 newgrp docker
             else
-                echo "Docker já está instalado."
+                echo "Docker installed."
             fi
 
-            echo "Configurando credenciais da AWS..."
-            read -p "Forneça sua access_key: " access_key
-            read -p "Forneça sua secret_key: " secret_key
-            read -p "Forneça sua região: " region
+            echo "Configuring aws credential..."
+            read -p "provide access_key: " access_key
+            read -p "provide secret_key: " secret_key
+            read -p "provide region: " region
 
     	    cd ~/aws-zabbix/ && docker-compose up -d --build
 	    docker exec -it zabbix-agent aws configure set aws_access_key_id $access_key
@@ -73,11 +73,19 @@ while true; do
                 docker run -d --name $novo_cliente --network $network $image
                 docker cp ./volumes/zabbix-agent/$novo_cliente/zabbix_agentd.conf $novo_cliente:/etc/zabbix/zabbix_agentd.conf
                 echo "New container '$novo_cliente' successful created and conneted on network '$network'."
+		echo "Configuring aws credential..."
+            	read -p "provide access_key: " access_key
+                read -p "provide secret_key: " secret_key
+                read -p "provide region: " region
+
+                cd ~/aws-zabbix/ && docker-compose up -d --build
+                docker exec -it $novo_cliente aws configure set aws_access_key_id $access_key
+                docker exec -it $novo_cliente aws configure set aws_secret_access_key $secret_key
+                docker exec -it $novo_cliente aws configure set region $region
             else
                 echo "Erro: The Docker image '$image' not is avaliable."
             fi
-            ;;
-	
+	    ;;
         3)
             echo "Deleting  client..."
             echo "Delete cliente..."
