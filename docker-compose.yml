@@ -65,7 +65,7 @@ services:
       - zabbix-net
 
   grafana:
-    image: robert132/grafana:1.1
+    image: grafana/grafana
     container_name: grafana
     ports:
       - "3000:3000"
@@ -75,6 +75,8 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - ./volumes/grafana:/etc/grafana/provisioning/datasources
+      - ./volumes/grafana-data:/var/lib/grafana
+      - ./volumes/grafana-plugins:/var/lib/grafana/plugins
     networks:
       - zabbix-net
 
