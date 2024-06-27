@@ -1,0 +1,76 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: 14b70a5214a04434baf9f3ab03d25e37
+      name: application
+  templates:
+    - uuid: 68f5087fc5b64c3f9753a6d18cc0650d
+      template: aws_anga
+      name: aws_anga
+      templates:
+        - name: 'Zabbix agent'
+      groups:
+        - name: application
+      items:
+        - uuid: cd598f339272478399059c636b5acb46
+          name: aws.prd.billing.count
+          type: TRAP
+          key: aws.prd.billing.count
+          delay: '0'
+          value_type: FLOAT
+        - uuid: 9edff42da184437e96d9bb37d7113461
+          name: aws.prd.billing.pedent
+          type: TRAP
+          key: aws.prd.billing.pedent
+          delay: '0'
+        - uuid: bdf4a86ec4bf4b51adeb29c31bc08e67
+          name: aws.prd.cloudwatch.alarm.billing.count
+          type: TRAP
+          key: aws.prd.cloudwatch.alarm.billing.count
+          delay: '0'
+        - uuid: 04d6bfd3e9cf48babda161cadf902758
+          name: aws.prd.ec2.ondemand.count
+          type: TRAP
+          key: aws.prd.ec2.ondemand.count
+          delay: '0'
+        - uuid: 72942f4187694431bb7ec57f0ff646fd
+          name: aws.prd.ec2.package.update.count
+          type: TRAP
+          key: aws.prd.ec2.package.update.count
+          delay: '0'
+        - uuid: 2438313d5f104e4595f711fee3d82874
+          name: aws.prd.ec2.running.count
+          type: TRAP
+          key: aws.prd.ec2.running.count
+          delay: '0'
+        - uuid: 5190ebfe84d24c5091f6f9ced54475ac
+          name: aws.prd.iam.count
+          type: TRAP
+          key: aws.prd.iam.count
+          delay: '0'
+        - uuid: 919980f1eb0643cd96c8d8231a4d9192
+          name: aws.prd.iam.day.count
+          type: TRAP
+          key: aws.prd.iam.day.count
+          delay: '0'
+        - uuid: 8ef4641ba4854df490b70be7ac038677
+          name: aws.prd.s3.allow.pub
+          type: TRAP
+          key: aws.prd.s3.allow.pub
+          delay: '0'
+        - uuid: 86480922d62a4c65afc9bfc6b291f59a
+          name: aws.prd.sns.count
+          type: TRAP
+          key: aws.prd.sns.count
+          delay: '0'
+        - uuid: 8b92546e44864c6c83c294907d84f104
+          name: ec2_ondemand.prd
+          key: ec2_ondemand.prd
+        - uuid: 6e879cba8b324fb8862372586f972534
+          name: s3.prd
+          key: s3.prd
+        - uuid: 855e8816642d44a68368598d0ef967ec
+          name: s3.prd.without.encrypt
+          type: TRAP
+          key: s3.prd.without.encrypt
+          delay: '0'
