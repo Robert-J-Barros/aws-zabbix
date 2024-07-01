@@ -52,14 +52,10 @@ while true; do
 
     	    cd ~/aws-zabbix/ && docker-compose up -d --build
 	    sudo chown -R 472:472 $local_user/aws-zabbix/volumes/grafana
-	    sudo chown -R 472:472 $local_user/aws-zabbix/volumes/grafana-plugins
 	    sudo chown -R 472:472 $local_user/aws-zabbix/volumes/grafana-data
 	    docker exec -it zabbix-agent aws configure set aws_access_key_id $access_key
             docker exec -it zabbix-agent aws configure set aws_secret_access_key $secret_key
             docker exec -it zabbix-agent aws configure set region $region
-            sudo echo "$local_user/Dockerfile/zabbix.conf/runner/crontab" >> /etc/crontab
-            #sudo chmod +x ./Dockerfile/zabbix.conf/runner/crontab.sh
-            #sudo ./Dockerfile/zabbix.conf/runner/crontab.sh
 	    ;;
         2)
 	   echo "Creating a new client"
