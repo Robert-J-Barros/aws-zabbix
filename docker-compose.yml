@@ -58,7 +58,7 @@ services:
     depends_on:
       - zabbix-server
     volumes:
-      - ./volumes/zabbix-agent/zabbix_agentd.conf:/etc/zabbix/zabbix_agentd.conf
+      - ./volumes/zabbix-agent/zabbix-agentd.conf:/etc/zabbix/zabbix_agentd.conf
     ports:
       - "10050:10050"
     networks:
@@ -76,7 +76,6 @@ services:
     volumes:
       - ./volumes/grafana:/etc/grafana/provisioning/datasources
       - ./volumes/grafana-data:/var/lib/grafana
-      - ./volumes/grafana-plugins:/var/lib/grafana/plugins
     networks:
       - zabbix-net
 
